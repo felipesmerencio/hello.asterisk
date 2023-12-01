@@ -10,7 +10,7 @@ docker exec -ti helloasterisk /bin/bash
 
 # Install dependencies
 
-dnf install gcc gcc-c++ bzip2 patch libedit-devel libuuid-devel libjansson-devel wget autoconf automake autoconf libtool libxml2-devel sqlite-devel jansson vim openssl-devel -y
+dnf install gcc gcc-c++ bzip2 patch libedit-devel libuuid-devel wget autoconf automake autoconf libtool libxml2-devel sqlite-devel jansson vim openssl-devel -y
 
 <!-- ## Install Jansson
 
