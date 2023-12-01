@@ -8,13 +8,36 @@ docker container start helloasterisk
 
 docker exec -ti helloasterisk /bin/bash
 
+# Install dependencies
+
+dnf install gcc gcc-c++ bzip2 patch libedit-devel libuuid-devel libjansson-devel wget autoconf automake autoconf libtool libxml2-devel sqlite-devel -y
+
+## Install Jansson
+
 cd /home/
 
-tar -zxf asterisk-20.5.0.tar.gz
+wget https://github.com/akheron/jansson/archive/refs/tags/v2.13.1.tar.gz
 
-cd asterisk-certified-13.8-cert2/
+tar -zxvf v2.13.1.tar.gz
+
+cd jansson-2.13.1
+
+autoreconf -i
+
+./configure
+
+make
+
+make install
+
+## Install Asterisk
+
+cd /home/asterisk-20.5.0/
+
 ./configure --disable-asteriskssl --libdir=/usr/lib64
+
 scp ../menuselect.makeopts ./
+
 make menuselect.makeopts
 cd .
 
