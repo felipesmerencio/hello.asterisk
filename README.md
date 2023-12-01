@@ -85,6 +85,27 @@ username=8000
 type=aor
 max_contacts=1
 ;contact=sip:my_extension@127.0.0.1:5060
+
+[9000]
+type=endpoint
+context=test-callface
+disallow=all
+allow=alaw
+transport=transporte-udp-nat
+auth=9000
+aors=9000
+direct_media=no
+
+[9000]
+type=auth
+auth_type=userpass
+password=qwe123
+username=9000
+
+[9000]
+type=aor
+max_contacts=1
+;contact=sip:my_extension@127.0.0.1:5060
 ```
 
 ## Regra - /etc/asterisk/extensions.conf
