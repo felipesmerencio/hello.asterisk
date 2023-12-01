@@ -10,9 +10,9 @@ docker exec -ti helloasterisk /bin/bash
 
 # Install dependencies
 
-dnf install gcc gcc-c++ bzip2 patch libedit-devel libuuid-devel libjansson-devel wget autoconf automake autoconf libtool libxml2-devel sqlite-devel -y
+dnf install gcc gcc-c++ bzip2 patch libedit-devel libuuid-devel libjansson-devel wget autoconf automake autoconf libtool libxml2-devel sqlite-devel jansson vim openssl-devel -y
 
-## Install Jansson
+<!-- ## Install Jansson
 
 cd /home/
 
@@ -28,18 +28,50 @@ autoreconf -i
 
 make
 
-make install
+make install -->
 
-## Install Asterisk
+## Install Asterisk 20
 
 cd /home/asterisk-20.5.0/
 
-./configure --disable-asteriskssl --libdir=/usr/lib64
+<!-- ./configure --disable-asteriskssl --libdir=/usr/lib64 -->
 
-scp ../menuselect.makeopts ./
+./configure --with-pjproject-bundled
 
-make menuselect.makeopts
+make menuselect
+
+make && make install
+
+make samples
+
 cd .
+
+rasterisk
+
+## Config Exten
+
+```
+[8000]
+type=endpoint
+context=from-internal
+disallow=all
+allow=alaw
+transport=transporte-udp-nat
+auth=8000
+aors=8000
+direct_media=no
+
+[8000]
+type=auth
+auth_type=userpass
+password=qwe123
+username=8000
+
+[8000]
+type=aor
+max_contacts=1
+;contact=sip:my_extension@127.0.0.1:5060
+```
 
 # Stop and delete Container
 
