@@ -32,11 +32,9 @@ make install
 
 ## Install Asterisk 20
 
-cd /home/asterisk-20.5.0/
+cd /home/asterisk-21.0.0/
 
-chmod 777 -R /home/asterisk-20.5.0/
-
-<!-- ./configure --disable-asteriskssl --libdir=/usr/lib64 -->
+chmod 777 -R /home/asterisk-21.0.0/
 
 make clean
 
@@ -48,16 +46,22 @@ make && make install
 
 make samples
 
-cd .
+## Debug 3 - Verbose
+
+vim /etc/asterisk/asterisk.conf
+
+asterisk -gvvvvvvvvvvvvvvvvvvvvvvvv
 
 rasterisk
 
-## Config Exten
+core set verbose 3
+
+## Criar ramais - /etc/asterisk/pjsip.conf
 
 ```
 [8000]
 type=endpoint
-context=from-internal
+context=test-callface
 disallow=all
 allow=alaw
 transport=transporte-udp-nat
@@ -75,6 +79,14 @@ username=8000
 type=aor
 max_contacts=1
 ;contact=sip:my_extension@127.0.0.1:5060
+```
+
+## Regra - /etc/asterisk/extensions.conf
+
+```
+[test-callface]
+exten => _XXXX,1,Dial(PJSIP/${EXTEN})
+exten => _XXXX,n,Hangup()
 ```
 
 # Stop and delete Container
