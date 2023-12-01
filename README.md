@@ -1,5 +1,11 @@
 # Hello Word Asterisk using Docker
 
+cd /home/
+
+git clone https://github.com/felipesmerencio/hello.asterisk.git
+
+cd hello.asterisk
+
 docker build -t helloasterisk:1 .
 
 docker create --name helloasterisk -p 5060:5060/tcp -p 5060:5060/udp -p 10000-10099:10000-10099/udp helloasterisk:1
