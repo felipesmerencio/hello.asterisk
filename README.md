@@ -10,9 +10,9 @@ docker exec -ti helloasterisk /bin/bash
 
 # Install dependencies
 
-dnf install gcc gcc-c++ bzip2 patch libedit-devel libuuid-devel wget autoconf automake autoconf libtool libxml2-devel sqlite-devel jansson vim openssl-devel -y
+dnf install gcc gcc-c++ bzip2 patch libedit-devel libuuid-devel wget autoconf automake autoconf libtool libxml2-devel sqlite-devel jansson vim openssl-devel diffutils -y
 
-<!-- ## Install Jansson
+## Install Jansson
 
 cd /home/
 
@@ -28,15 +28,19 @@ autoreconf -i
 
 make
 
-make install -->
+make install
 
 ## Install Asterisk 20
 
 cd /home/asterisk-20.5.0/
 
+chmod 777 -R /home/asterisk-20.5.0/
+
 <!-- ./configure --disable-asteriskssl --libdir=/usr/lib64 -->
 
-./configure --with-pjproject-bundled
+make clean
+
+./configure --disable-asteriskssl --libdir=/usr/lib64 --with-pjproject-bundled
 
 make menuselect
 
