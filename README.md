@@ -81,6 +81,7 @@ max_contacts=1
 
 ```
 docker container stop helloasterisk && docker container rm helloasterisk
+docker container stop helloasterisk && docker container rm helloasterisk && git pull
 ```
 
 # Complete command to upload Linux
