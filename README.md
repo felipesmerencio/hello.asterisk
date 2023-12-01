@@ -9,6 +9,7 @@ docker container start helloasterisk
 docker exec -ti helloasterisk /bin/bash
 
 tar -zxf asterisk-certified-13.8-current.tar.gz
+
 cd asterisk-certified-13.8-cert2/
 ./configure --disable-asteriskssl --libdir=/usr/lib64
 scp ../menuselect.makeopts ./
